@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import './index.css'
+import UserPageView from './UserPageView'
 
 const GITHUB_API_URL = "https://api.github.com/users/"
 
@@ -26,27 +27,7 @@ const UserPage = (props) => {
     return user.loading ? (
         <div>Loading...</div>
     ) : (
-        <div className="container">
-            <h1>{props.match.params.id}</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Location</th>
-                        <th>Website</th>
-                        <th>Followers</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>{user.name}</td>
-                        <td>{user.location}</td>
-                        <td><a href={user.blog}>{user.blog}</a></td>
-                        <td>{user.followers}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        <UserPageView user={user} username={props.match.params.id} />
     )
 
 }
